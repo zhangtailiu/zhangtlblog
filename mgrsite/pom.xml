@@ -58,6 +58,20 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
+
+        <!--mybatis根据表注释生成注释-->
+        <!-- MySQL Connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.40</version>
+        </dependency>
+        <!-- MyBatis Generator -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.3.7</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -75,6 +89,8 @@
                     <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
                     <verbose>true</verbose>
                     <overwrite>false</overwrite>
+                    <!--将我们的CLASSPATH的jar包包含到逆向生成中，这样自定义的MySQLCommentGenerator才能生效
+                    通过Generator的main方法启动-->
                     <includeCompileDependencies>true</includeCompileDependencies>
                 </configuration>
                 <executions>
