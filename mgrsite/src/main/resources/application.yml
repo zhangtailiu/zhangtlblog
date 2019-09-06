@@ -4,4 +4,6 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql:///trip
+    url: jdbc:mysql:///trip?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    password: admin
+    username: root
