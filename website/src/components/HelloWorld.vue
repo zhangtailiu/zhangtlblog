@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <el-form ref="from" :model="user">
+    <el-form ref="from" :model="user" label-width="80px">
       <el-form-item label="账号">
         <el-input v-model="user.username"></el-input>
       </el-form-item>
@@ -42,5 +42,10 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+}
+.el-form{
+  text-align: center;
+  margin: 0 auto;
+  width: 30%;
 }
 </style>
