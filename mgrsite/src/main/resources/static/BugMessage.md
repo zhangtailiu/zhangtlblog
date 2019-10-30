@@ -25,3 +25,8 @@ proxyTable: {
 ```java
 https://blog.csdn.net/suki_rong/article/details/80445880
 ```
+
+##Jenkins token
+```java
+0cb9e679b21a65885e174f38f30a9d0cbcf6e6d8
+```
