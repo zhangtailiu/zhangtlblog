@@ -28,7 +28,11 @@ export default {
   },
   methods:{
     onSubmit:function () {
-      axios.post('/login',this.user).then(console.log(111)).catch(console.log(222));
+      axios.post('/login',this.user).then(res =>{
+        if(res.data == "success"){
+          this.$router.push({ path:'/'});
+        }
+      }).catch(console.log(222));
     }
   },
   watch:{
