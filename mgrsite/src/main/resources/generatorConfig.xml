@@ -13,10 +13,10 @@
             <property name="addRemarkComments" value="true"/>
         </commentGenerator>
         <!--JDBC数据库连接-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/trip"
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://49.234.193.235:3306/blog"
                         userId="root"
-                        password="admin">
+                        password="ZHANGtl123..">
         </jdbcConnection>
         <!--
         Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类
@@ -54,7 +54,7 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!--tables-->
-        <table tableName="car" domainObjectName="Car"
+        <table tableName="acount" domainObjectName="Acount"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

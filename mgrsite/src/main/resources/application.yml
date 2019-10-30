@@ -2,10 +2,10 @@ server:
   port: 80
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql:///trip?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
-    password: admin
+    url: jdbc:mysql://49.234.193.235:3306/blog?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+    password: ZHANGtl123..
     username: root
   thymeleaf:
     prefix:
