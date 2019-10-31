@@ -40,18 +40,18 @@
             </configuration>
           </execution>
           <!-- Install all project dependencies -->
-          <execution>
-            <id>npm install</id>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-            <!-- optional: default phase is "generate-resources" -->
-            <phase>generate-resources</phase>
-            <!-- Optional configuration which provides for running any npm command -->
-            <configuration>
-              <arguments>install</arguments>
-            </configuration>
-          </execution>
+          <!--<execution>-->
+            <!--<id>npm install</id>-->
+            <!--<goals>-->
+              <!--<goal>npm</goal>-->
+            <!--</goals>-->
+            <!--&lt;!&ndash; optional: default phase is "generate-resources" &ndash;&gt;-->
+            <!--<phase>generate-resources</phase>-->
+            <!--&lt;!&ndash; Optional configuration which provides for running any npm command &ndash;&gt;-->
+            <!--<configuration>-->
+              <!--<arguments>install</arguments>-->
+            <!--</configuration>-->
+          <!--</execution>-->
           <!-- Build and minify static files -->
           <execution>
             <id>npm run build</id>
