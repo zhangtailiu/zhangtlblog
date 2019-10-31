@@ -36,6 +36,7 @@
             <configuration>
               <nodeVersion>v10.16.0</nodeVersion>
               <npmVersion>6.9.0</npmVersion>
+              <downloadRoot>http://npm.taobao.org/mirrors/node/</downloadRoot>
             </configuration>
           </execution>
           <!-- Install all project dependencies -->
