@@ -1,5 +1,8 @@
 <template>
-    <h1>hello{{username}}</h1>
+    <div>
+      <h1>hello{{username}}</h1>
+      <el-button type="primary" @click="loginPage">登陆</el-button>
+    </div>
 </template>
 
 <script>
@@ -9,6 +12,11 @@
           return{
             username:""
           }
+      },
+      methods: {
+        loginPage : function(){
+          this.$router.push({ path:'/login'});
+        }
       }
     }
 </script>
