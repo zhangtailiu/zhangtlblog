@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 /*参照
 * https://www.jianshu.com/p/29d7eea97339
+* http://www.ruanyifeng.com/blog/2019/04/oauth-grant-types.html
 * */
 @SpringBootTest
 public class JWTTest {

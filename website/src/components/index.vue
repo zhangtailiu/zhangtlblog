@@ -1,7 +1,7 @@
 <template>
     <div>
       <h1>hello{{username}}</h1>
-      <el-button type="primary" @click="loginPage">登陆</el-button>
+        <el-button v-if="username == ''" type="primary" @click="loginPage">登陆</el-button>
     </div>
 </template>
 
