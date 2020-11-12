@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+vue_blog_admin/node_modules
