@@ -14,7 +14,8 @@ import java.util.List;
 @Configuration
 public class GlobalCorsConfig implements WebMvcConfigurer {
     /**
-     * 跨域配置
+     * 跨域配置 只是用这种配置会导致 自定义拦截器失效   https://segmentfault.com/a/1190000018018849
+     * 应该使用下面的方式
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
