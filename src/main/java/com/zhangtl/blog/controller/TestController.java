@@ -13,6 +13,9 @@ public class TestController {
 
     @GetMapping("/test")
     public Object test(){
-        return testService.test();
+        if("1".equals(testService.test())){
+            return "登录成功";
+        }
+        return "登录失败";
     }
 }
