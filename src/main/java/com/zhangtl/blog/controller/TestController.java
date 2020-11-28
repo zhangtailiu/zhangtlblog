@@ -11,7 +11,7 @@ public class TestController {
 
     private ITestService testService;
 
-    @GetMapping("/test")
+    @GetMapping("/getUser")
     public Object test(){
         if("1".equals(testService.test())){
             return "登录成功";
