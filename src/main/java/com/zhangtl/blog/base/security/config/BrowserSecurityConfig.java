@@ -1,5 +1,8 @@
 package com.zhangtl.blog.base.security.config;
 
+import com.zhangtl.blog.base.security.handler.CustomizeAuthenticationFailureHandler;
+import com.zhangtl.blog.base.security.handler.CustomizeAuthenticationSuccessHandler;
+import com.zhangtl.blog.base.security.handler.CustomizeLogoutSuccessHandler;
 import com.zhangtl.blog.base.security.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,13 +28,33 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     //匿名用户访问无权限资源时的异常
     @Autowired
     private CustomizeAuthenticationEntryPoint authenticationEntryPoint;
+    //登录成功处理
+    @Autowired
+    private CustomizeAuthenticationSuccessHandler authenticationSuccessHandler;
+    //登录失败处理逻辑;
+    @Autowired
+    private CustomizeAuthenticationFailureHandler authenticationFailureHandler;
+    //登出成功处理逻辑
+    @Autowired
+    private CustomizeLogoutSuccessHandler logoutSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/getUser").hasAuthority("query_user")
                 .and().exceptionHandling().
-                authenticationEntryPoint(authenticationEntryPoint);
+                authenticationEntryPoint(authenticationEntryPoint)
+                //登录逻辑
+                .and()
+                .formLogin().
+                permitAll().//允许所有用户
+                successHandler(authenticationSuccessHandler).//登录成功处理逻辑
+                failureHandler(authenticationFailureHandler)//登录失败处理逻辑;
+                //登出
+                .and().logout().
+                permitAll().//允许所有用户
+                logoutSuccessHandler(logoutSuccessHandler).//登出成功处理逻辑
+                deleteCookies("JSESSIONID");//登出之后删除cookie
 //           http
                    /*前后端不分离的方式*/
 //                .formLogin() // 表单方式
