@@ -4,6 +4,8 @@ import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * <p>
  * 
@@ -21,6 +23,7 @@ public class BlogUser implements Serializable {
     /**
      * 用户名
      */
+    @NotBlank(message = "用户名不可为空")
     private String username;
 
     /**
@@ -31,6 +34,7 @@ public class BlogUser implements Serializable {
     /**
      * 用户密码
      */
+    @NotBlank(message = "用户密码不可为空")
     private String password;
 
     /**

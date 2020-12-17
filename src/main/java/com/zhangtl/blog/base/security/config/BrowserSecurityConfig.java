@@ -41,7 +41,7 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/getUser").hasAuthority("query_user")
+                .antMatchers("/sys/blog-user/login").hasAuthority("query_user")
                 .and().exceptionHandling().
                 authenticationEntryPoint(authenticationEntryPoint)
                 //登录逻辑
@@ -54,7 +54,8 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().logout().
                 permitAll().//允许所有用户
                 logoutSuccessHandler(logoutSuccessHandler).//登出成功处理逻辑
-                deleteCookies("JSESSIONID");//登出之后删除cookie
+                deleteCookies("JSESSIONID")//登出之后删除cookie
+                .and().csrf().disable();
 //           http
                    /*前后端不分离的方式*/
 //                .formLogin() // 表单方式

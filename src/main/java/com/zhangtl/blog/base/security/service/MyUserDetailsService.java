@@ -30,7 +30,7 @@ public class MyUserDetailsService implements UserDetailsService {
         if(StringUtils.isBlank(username)){
             throw new RuntimeException("用户不能为空");
         }
-        BlogUser user = blogUserService.getOne(Wrappers.<BlogUser>query().lambda().eq(BlogUser::getUsername, username));
+        BlogUser user = blogUserService.getOne(Wrappers.<BlogUser>lambdaQuery().eq(BlogUser::getUsername, username));
         if(user == null){
             throw new RuntimeException("当前用户不存在");
         }

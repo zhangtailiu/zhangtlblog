@@ -48,8 +48,7 @@
     },
     methods: {
       login: function () {
-        axios.get('http://localhost:8088/test', {
-        }).then(res =>{
+        this.axios.post('http://localhost:80/api/login?username=+'+this.username+'&password='+this.password).then(res =>{
           alert(res.data);
         }).catch(error=>{
           alert(error);
