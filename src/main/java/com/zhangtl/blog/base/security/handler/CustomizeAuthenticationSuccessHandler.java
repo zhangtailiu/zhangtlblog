@@ -1,6 +1,10 @@
 package com.zhangtl.blog.base.security.handler;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.zhangtl.blog.base.sys.UserMessage;
+import com.zhangtl.blog.sys.entity.BlogUser;
+import com.zhangtl.blog.sys.service.IBlogUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +25,9 @@ import java.util.HashMap;
 @Component
 public class CustomizeAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
+    @Autowired
+    private IBlogUserService blogUserService;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         //更新用户表上次登录时间、更新人、更新时间等字段
@@ -31,6 +38,7 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
         HashMap result = new HashMap();
         result.put("code",200);
         result.put("msg","登录成功");
+        result.put("username",((User)authentication.getPrincipal()).getUsername());
        //处理编码方式，防止中文乱码的情况
         httpServletResponse.setContentType("text/json;charset=utf-8");
        //塞到HttpServletResponse中返回给前台

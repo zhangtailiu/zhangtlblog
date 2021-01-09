@@ -5,7 +5,7 @@ spring:
     druid:
       url: jdbc:mysql://81.70.147.133:3306/blog?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true&allowPublicKeyRetrieval=true
       username: root
-      password: LIUji123..
+      password: ZHANGtl123..
       driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis-plus:
   mapper-locations: com/zhangtl/blog/**/xml/*Mapper.xml

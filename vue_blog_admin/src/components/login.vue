@@ -49,7 +49,7 @@
     methods: {
       login: function () {
         this.axios.post('http://localhost:80/api/login?username=+'+this.username+'&password='+this.password).then(res =>{
-          alert(res.data);
+          this.$router.push({path: '/?username='+res.data.username})
         }).catch(error=>{
           alert(error);
         })
