@@ -19,6 +19,12 @@
     </properties>
 
     <dependencies>
+        <!-- JWT token生成 -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
         <!--sping validator 字段校验-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

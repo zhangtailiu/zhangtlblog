@@ -50,7 +50,7 @@
     },
     methods: {
       login: function () {
-        post('http://localhost:80/api/login?',this.user).then(res =>{
+        post('/login?',this.user).then(res =>{
           this.$router.push({path: '/?username='+res.username})
         }).catch(error=>{
           alert(error);

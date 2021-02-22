@@ -106,7 +106,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
  */
 export function get(url, params){
   return new Promise((resolve, reject) =>{
-    axios.get(url, {
+    axios.get(axios.defaults.baseURL+url, {
       params: params
     })
       .then(res => {
@@ -124,7 +124,7 @@ export function get(url, params){
  */
 export function post(url, params) {
   return new Promise((resolve, reject) => {
-    axios.post(url, QS.stringify(params))
+    axios.post(axios.defaults.baseURL+url, QS.stringify(params))
       .then(res => {
         resolve(res.data);
       })

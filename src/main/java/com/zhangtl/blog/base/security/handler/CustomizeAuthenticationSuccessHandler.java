@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zhangtl.blog.base.sys.UserMessage;
 import com.zhangtl.blog.sys.entity.BlogUser;
 import com.zhangtl.blog.sys.service.IBlogUserService;
+import com.zhangtl.blog.sys.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,6 +40,9 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
         result.put("code",200);
         result.put("msg","登录成功");
         result.put("username",((User)authentication.getPrincipal()).getUsername());
+        BlogUser blogUser = new BlogUser();
+        blogUser.setUsername(((User)authentication.getPrincipal()).getUsername());
+        result.put("token", JWTUtil.getToken(blogUser));
        //处理编码方式，防止中文乱码的情况
         httpServletResponse.setContentType("text/json;charset=utf-8");
        //塞到HttpServletResponse中返回给前台
