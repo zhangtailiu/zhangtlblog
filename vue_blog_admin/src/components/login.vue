@@ -11,7 +11,7 @@
             <el-col :span="20">
               <el-input
                 placeholder="请输入内容"
-                v-model="username"
+                v-model="user.username"
                 clearable>
               </el-input>
             </el-col>
@@ -22,7 +22,7 @@
           <el-col :span="20">
             <el-input
               placeholder="请输入内容"
-              v-model="password"
+              v-model="user.password"
               type="password"
               clearable>
             </el-input>
@@ -37,19 +37,21 @@
 </template>
 
 <script>
-  import axios from  'axios'
+  import { get, post } from '../request/http'
   export default {
     name: 'HelloWorld',
     data() {
       return {
-        username: "",
-        password: ""
+        user:{
+          username: "",
+          password: ""
+        }
       }
     },
     methods: {
       login: function () {
-        this.axios.post('http://localhost:80/api/login?username=+'+this.username+'&password='+this.password).then(res =>{
-          this.$router.push({path: '/?username='+res.data.username})
+        post('http://localhost:80/api/login?',this.user).then(res =>{
+          this.$router.push({path: '/?username='+res.username})
         }).catch(error=>{
           alert(error);
         })
