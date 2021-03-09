@@ -1,0 +1,56 @@
+version: '3.1'
+services:
+  nginx:
+    image: nginx
+    container_name: nginx_docker
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/logs:/var/log/nginx
+      - ./nginx/html:/usr/share/nginx/html
+    networks:
+      - app-network
+  mysql:
+    image: mysql
+    container_name: mysql_docker
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      # 设置root用户的密码
+      - MYSQL_ROOT_PASSWORD=ZHANGtl123..
+      #      MYSQL_USER: mysql
+      #      MYSQL_PASSWORD: mysql
+      # 设置时区
+      - TZ=Asia/Shanghai
+    command: [
+      #  防止低版本的连接客服报错的问题
+      "--default-authentication-plugin=mysql_native_password",
+      # 设置数据库的编码
+      "--character-set-server=utf8mb4",
+      # 设置数据库默认的排序方式
+      "--collation-server=utf8mb4_bin",
+      # 不允许时间字段 not null
+      "--explicit_defaults_for_timestamp=true",
+      # Linux  表名区分大小写   1 表示不区分大小写
+      "--lower_case_table_names=1"
+    ]
+    networks:
+      - app-network
+    volumes:
+      - ./mysql/conf:/etc/mysql/conf.d
+      - ./mysql/logs:/logs
+      - ./mysql/data:/var/lib/mysql
+  app:
+    build: ./dockerfile/
+    container_name: appdocker
+    depends_on:
+      - nginx
+      - mysql
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

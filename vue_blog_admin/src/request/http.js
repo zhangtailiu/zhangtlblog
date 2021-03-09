@@ -12,7 +12,7 @@ if (process.env.NODE_ENV == 'development') {
 } else if (process.env.NODE_ENV == 'debug') {
   axios.defaults.baseURL = 'http://localhost/api';
 } else if (process.env.NODE_ENV == 'production') {
-  axios.defaults.baseURL = 'http://localhost/api';
+  axios.defaults.baseURL = 'http://81.70.147.133:8080/api';
 }
 
 // 请求超时时间
