@@ -49,8 +49,9 @@
         };
       },
       mounted(){
-        var user =JSON.parse(window.localStorage.getItem("user"));
-        this.username =  user.username;
+        // console.log(this.$store)
+        // var user =JSON.parse(window.localStorage.getItem("user"));
+        this.username =  this.$store.state.user.username;
       },
       methods: {
         handleSelect(key, keyPath) {
