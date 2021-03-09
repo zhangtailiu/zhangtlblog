@@ -29,6 +29,8 @@
        <el-menu-item index="12" disabled v-else>{{username}}</el-menu-item>
       </div>
     </el-menu>
+    <div class="indexBackground">
+    </div>
   </div>
 <!--    <el-button>登录</el-button>-->
 <!--    <el-image v-model="url"></el-image>-->
@@ -42,18 +44,13 @@
         return {
           activeIndex: '1',
           activeIndex2: '1',
-          username:''
+          username:'',
+          backgroundUrl:""
         };
       },
       mounted(){
-        this.username = this.$route.query.username;
-        console.log(this.username);
-        // this.axios.get('http://localhost:80/api/sys/blog-user/getUserName').then(res =>{
-        //   this.username = res.data;
-        //   console.log(res);
-        // }).catch(error=>{
-        //   alert(error);
-        // })
+        var user =JSON.parse(window.localStorage.getItem("user"));
+        this.username =  user.username;
       },
       methods: {
         handleSelect(key, keyPath) {
@@ -64,5 +61,10 @@
 </script>
 
 <style scoped>
-
+  /* .indexBackground{
+    background-image: url("../assets/logo.png");
+    background-position: top center;
+    width: 200px;
+    height: 200px;
+  } */
 </style>

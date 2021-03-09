@@ -1,81 +1,90 @@
 <template>
-  <div class="login">
-    <div class="login-form">
-      <el-form>
-        <el-form-item>
-          <el-row>
-            <h2>登录</h2>
-          </el-row>
-          <el-row type="flex">
-            <el-col :span="4"><span style="width: 100px" :span="3">账号:</span></el-col>
-            <el-col :span="20">
-              <el-input
-                placeholder="请输入内容"
-                v-model="user.username"
-                clearable>
-              </el-input>
-            </el-col>
-          </el-row>
-        </el-form-item>
-        <el-form-item>
-          <el-col :span="4"><span>密码:</span></el-col>
-          <el-col :span="20">
-            <el-input
-              placeholder="请输入内容"
-              v-model="user.password"
-              type="password"
-              clearable>
-            </el-input>
-          </el-col>
-        </el-form-item>
-        <div>
-          <el-button type="primary" @click="login()">登录</el-button>
-        </div>
-      </el-form>
-    </div>
-  </div>
+  <body id="poster">
+    <el-form class="login-container" label-position="left" label-width="0px">
+      <h3 class="login_title">系统登录</h3>
+      <el-form-item>
+        <el-input
+          type="text"
+          v-model="user.username"
+          auto-complete="off"
+          placeholder="账号"
+        ></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-input
+          type="password"
+          v-model="user.password"
+          auto-complete="off"
+          placeholder="密码"
+        ></el-input>
+      </el-form-item>
+      <el-form-item style="width: 100%">
+        <el-button
+          type="primary"
+          style="width: 100%;background: #505458;border: none"
+          v-on:click="login"
+          >登录</el-button
+        >
+      </el-form-item>
+    </el-form>
+  </body>
 </template>
 
 <script>
-  import { get, post } from '../request/http'
-  export default {
-    name: 'HelloWorld',
-    data() {
-      return {
-        user:{
-          username: "",
-          password: ""
-        }
+import { get, post } from "../request/http";
+export default {
+  name: "HelloWorld",
+  data() {
+    return {
+      user: {
+        username: "",
+        password: ""
       }
-    },
-    methods: {
-      login: function () {
-        post('/login?',this.user).then(res =>{
-          this.$router.push({path: '/?username='+res.username})
-        }).catch(error=>{
-          alert(error);
+    };
+  },
+  methods: {
+    login: function() {
+      var _this = this
+      post("/login?", this.user)
+        .then(res => {
+          _this.$store.commit("login", _this.user);
+          var path = this.$route.query.redirect;
+          // this.$router.push({ path: "/index?username=" + res.username });
+          this.$router.replace({
+            path: path === "/" || path === undefined ? "/index" : path
+          });
         })
-      }
+        .catch(error => {
+          alert(error);
+        });
     }
   }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .demo-input-suffix {
-    margin-bottom: 15px;
-  }
-
-  .login-form {
-    width: 500px;
-    margin: 0 auto;
-  }
-
-  body {
-    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-    font-weight: 400;
-    font-size: $--font-size-base;
-    color: $--color-black;
-    -webkit-font-smoothing: antialiased;
-  }
+#poster {
+  background-color: bisque;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: fixed;
+}
+.login-container {
+  border-radius: 15px;
+  background-clip: padding-box;
+  margin: 13% auto;
+  width: 25%;
+  padding: 35px 35px 15px 35px;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 0 25px #cac6c6;
+}
+.login_title {
+  margin: 0px auto 40px auto;
+  text-align: center;
+  color: #505458;
+}
 </style>
