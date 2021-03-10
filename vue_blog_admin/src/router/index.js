@@ -1,25 +1,34 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import login from '@/components/login'
-import index from '@/components/index'
+import Vue from "vue";
+import Router from "vue-router";
+import login from "@/components/login";
+import index from "@/components/index";
+import home from "@/components/home";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-  mode:'history',
+  mode: "history",
   routes: [
     {
-      path: '/login',
-      name: 'login',
-      component: login
+      path: "/home",
+      name: "home",
+      component: home,
+      redirect: "/index",
+      children: [
+        {
+          path: "/index",
+          name: "index",
+          component: index,
+          meta: {
+            requireAuth: true,
+          },
+        },
+      ],
     },
     {
-      path: '/index',
-      name: 'index',
-      component: index,
-      meta:{
-        requireAuth: true
-      }
-    }
-  ]
-})
+      path: "/login",
+      name: "login",
+      component: login,
+    },
+  ],
+});
