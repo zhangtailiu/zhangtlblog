@@ -38,7 +38,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: target/blog-0.0.1-SNAPSHOT.jar
-          remote: www.zhangtailiu.cn/home/myblog/test/docker/app.jar
+          remote: /home/myblog/test/docker/app.jar
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
