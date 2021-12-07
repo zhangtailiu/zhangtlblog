@@ -34,14 +34,17 @@ jobs:
           java-version: 1.8
       - name: Generate the package
         run: mvn -B package --file pom.xml -Dmaven.test.skip=true
-      - name: 将 JAR 包部署到服务器
-        uses: garygrossgarten/github-action-scp@release
+      - name: Deploy to server
+        id: deploy
+        uses: Pendect/action-rsyncer@v1.1.0
+        env:
+          DEPLOY_KEY: ${{secrets.SSH_PASSWORD}}
         with:
-          local: target/blog-0.0.1-SNAPSHOT.jar
-          remote: /home/myblog/test/docker/app.jar
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
+          flags: '-avzr --delete'
+          options: ''
+          ssh_options: ''
+          src: 'public/'
+          dest: 'root@81.70.147.133:/home/myblog/test/docker'
       - name: 在服务器上执行 java -jar，请确保服务器安装了 JDK
         if: always()
         uses: fifsky/ssh-action@master
