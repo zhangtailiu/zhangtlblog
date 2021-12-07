@@ -43,7 +43,7 @@ jobs:
           flags: '-avzr --delete'
           options: ''
           ssh_options: ''
-          src: 'public/'
+          src: 'target/blog-0.0.1-SNAPSHOT.jar'
           dest: 'root@81.70.147.133:/home/myblog/test/docker'
       - name: 在服务器上执行 java -jar，请确保服务器安装了 JDK
         if: always()
